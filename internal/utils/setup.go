@@ -39,7 +39,7 @@ func Setup(ctx context.Context, mode string) *models.Config {
 
 func SetConfig(ctx context.Context, cfg *models.Config) {
 	logger := log.FromContext(ctx)
-	f, err := os.OpenFile("config.json", os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0600)
+	f, err := os.OpenFile("./data/config.json", os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0600)
 	if err != nil {
 		logger.WithError(err).Error("Error opening config.json")
 		return
@@ -54,7 +54,7 @@ func SetConfig(ctx context.Context, cfg *models.Config) {
 }
 
 func loadConfig() *models.Config {
-	data, err := os.ReadFile("config.json")
+	data, err := os.ReadFile("./data/config.json")
 	if err != nil {
 		if os.IsNotExist(err) {
 			return nil
